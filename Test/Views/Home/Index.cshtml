@@ -1,0 +1,132 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var SqlStudents = ViewData["StudentsOfSQL"] as IEnumerable<Student>;
+    var SqlTeachers = ViewData["TeacherOfSQL"] as IEnumerable<Teacher>;
+    var MySqlStudents = ViewData["StudentsOfMySQL"] as IEnumerable<Student>;
+    var MySqlTeachers = ViewData["TeacherOfMySQL"] as IEnumerable<Teacher>;
+}
+
+@if (TempData["Message"] != null) {
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
+
+@switch (ViewData["DataConnection"])
+{
+    case "MySQL":
+        <h3>Student Table from MySQL Database</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Roll</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in MySqlStudents!)
+                {
+                    <tr>
+                        <th scope="row">@student.Id</th>
+                        <td>@student.Name</td>
+                        <td>@student.Roll</td>
+                        <td>@student.CreatedAt</td>
+                        <td>
+                            <a asp-action="EditRecord" asp-controller="Home" asp-route-id="@student.Id" class="btn btn-info">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <br />
+        <h3>Teacher Table from MySQL Database</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Roll</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in MySqlTeachers!)
+                {
+                    <tr>
+                        <th scope="row">@student.Id</th>
+                        <td>@student.Name</td>
+                        <td>@student.Department</td>
+                        <td>@student.CreatedAt</td>
+                        <td>
+                            <a asp-action="EditRecord" asp-controller="Home" asp-route-id="@student.Id" class="btn btn-info">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        break;
+    default:
+        <h3>Student Table from SQL Database</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Roll</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in SqlStudents!)
+                {
+                    <tr>
+                        <th scope="row">@student.Id</th>
+                        <td>@student.Name</td>
+                        <td>@student.Roll</td>
+                        <td>@student.CreatedAt</td>
+                        <td>
+                            <a asp-action="EditRecord" asp-controller="Home" asp-route-id="@student.Id" class="btn btn-info">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <br />
+        <h3>Teacher Table from SQL Database</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Roll</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in SqlTeachers!)
+                {
+                    <tr>
+                        <th scope="row">@student.Id</th>
+                        <td>@student.Name</td>
+                        <td>@student.Department</td>
+                        <td>@student.CreatedAt</td>
+                        <td>
+                            <a asp-action="EditRecord" asp-controller="Home" asp-route-id="@student.Id" class="btn btn-info">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        break;
+}

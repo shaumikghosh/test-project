@@ -1,0 +1,31 @@
+﻿@model STViewModel;
+@{
+    ViewData["Title"] = "EditRecord";
+}
+
+<h1>Edit Record</h1>
+<form asp-action="EditRecord" asp-controller="Home" asp-route-id="@Context.Request.RouteValues["id"]">
+    <small>Student Info</small>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input type="text" class="form-control" asp-for="StudentName" required>
+        <span asp-validation-for="StudentName"></span>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Roll</label>
+        <input type="number" class="form-control" asp-for="StudentRoll" required>
+        <span asp-validation-for="StudentRoll"></span>
+    </div>
+    <small>Teacher Info</small>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input type="text" class="form-control" asp-for="TeacherName" required>
+        <span asp-validation-for="TeacherName"></span>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Department</label>
+        <input type="text" class="form-control" asp-for="TeacherDepartment" required>
+        <span asp-validation-for="TeacherDepartment"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

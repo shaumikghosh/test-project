@@ -1,0 +1,21 @@
+﻿@model DbViewModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+@if (TempData["Message"] != null) {
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
+<h1>Select target Database</h1>
+<form asp-action="Privacy" asp-controller="Home">
+    <div class="form-group">
+        <select class="form-control" asp-for="DbName">
+            <option value="SQL">SQL</option>
+            <option value="MySQL">MySQL</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
